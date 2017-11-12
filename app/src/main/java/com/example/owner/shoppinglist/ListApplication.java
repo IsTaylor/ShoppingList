@@ -11,6 +11,7 @@ import io.realm.RealmConfiguration;
 
 public class ListApplication extends Application {
     private Realm realmList;
+    //aksfdhgkj
 
     @Override
     public void onCreate() {
