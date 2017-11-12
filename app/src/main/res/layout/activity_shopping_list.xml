@@ -19,10 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:collapsedTitleTextAppearance="@color/colorPrimaryDark"
-            app:expandedTitleTextAppearance="@color/colorPrimaryDark"
-            android:background="#daffb3"
-            app:contentScrim="#daffb3"
+            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
@@ -46,6 +43,6 @@
         android:tint="@color/colorPrimaryDark"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_add_black_48dp" />
 
 </android.support.design.widget.CoordinatorLayout>

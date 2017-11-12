@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -14,62 +14,78 @@
             android:id="@+id/ivItem"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
             android:layout_margin="10dp"
             android:src="@drawable/watermelon" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/layoutNamePrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivItem"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="7dp"
                 android:text="Testing!!" />
 
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tvName"
+                android:paddingLeft="7dp"
                 android:text="Price" />
 
             <CheckBox
                 android:id="@+id/cbBought"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tvPrice"
                 android:text="Purchased?" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_gravity="right"
             android:text="Delete" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="7">
+
+        <ToggleButton
+            android:id="@+id/tbDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:textOff="View Details"
+            android:textOn="Close Details" />
 
         <Button
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Edit" />
 
     </LinearLayout>
-
-    <ToggleButton
-        android:id="@+id/tbDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textOff="View Details"
-        android:textOn="Close Details" />
 
     <TextView
         android:id="@+id/tvDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lorem Ipssum bleh"
+        android:text=""
         android:visibility="gone" />
 
 
