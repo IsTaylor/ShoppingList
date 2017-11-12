@@ -12,7 +12,7 @@
         android:id="@+id/etAddName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Item name"/>
+        android:hint="@string/item_name"/>
 
     <Spinner
         android:id="@+id/spAddCategory"
@@ -24,25 +24,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Price"/>
+        android:hint="@string/price"/>
 
     <EditText
         android:id="@+id/etAddDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Item Description"/>
+        android:hint="@string/item_description"/>
 
     <CheckBox
         android:id="@+id/cbAddPurchased"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Purchased?"/>
+        android:text="@string/purchased"/>
 
     <Button
         android:id="@+id/btnAddItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Item"/>
+        android:text="@string/add_item"/>
 
 
 </LinearLayout>

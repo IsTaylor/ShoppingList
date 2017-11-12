@@ -67,7 +67,7 @@ public class AddItem extends AppCompatActivity {
             etPrice.setText(Integer.toString(itemToEdit.getPrice()));
             spnCategory.setDropDownHorizontalOffset(itemToEdit.getCategory());
             cbPurchased.setChecked(itemToEdit.getStatus());
-            btnAdd.setText("Edit Item");
+            btnAdd.setText(R.string.edit_item);
         }
 
 
@@ -93,29 +93,33 @@ public class AddItem extends AppCompatActivity {
                                 editRealmObject(toEnterName, toEnterDescription, toEnterPrice, toEnterPurchased, toEnterCategory, realmList);
                             } else {
 
-                                realmList.beginTransaction();
-                                Item newItem = realmList.createObject(Item.class, UUID.randomUUID().toString());
-                                newItem.setStatus(toEnterPurchased);
-                                newItem.setCategory(toEnterCategory);
-                                newItem.setDescription(toEnterDescription);
-                                newItem.setName(toEnterName);
-                                newItem.setPrice(toEnterPrice);
-                                realmList.commitTransaction();
+                                makeNewRealmObject(toEnterName, toEnterDescription, toEnterPrice, toEnterPurchased, toEnterCategory, realmList);
                             }
 
                             openShoppingList();
                         } else {
-                            etDescription.setError("This field cannot be empty");
+                            etDescription.setError(getString(R.string.empty_field_error));
                         }
                     } else {
-                        etPrice.setError("This field cannot be empty");
+                        etPrice.setError(getString(R.string.empty_field_error));
                     }
                 } else {
-                    etName.setError("This field cannot be empty");
+                    etName.setError(getString(R.string.empty_field_error));
                 }
             }
         });
 
+    }
+
+    private void makeNewRealmObject(String toEnterName, String toEnterDescription, int toEnterPrice, boolean toEnterPurchased, int toEnterCategory, Realm realmList) {
+        realmList.beginTransaction();
+        Item newItem = realmList.createObject(Item.class, UUID.randomUUID().toString());
+        newItem.setStatus(toEnterPurchased);
+        newItem.setCategory(toEnterCategory);
+        newItem.setDescription(toEnterDescription);
+        newItem.setName(toEnterName);
+        newItem.setPrice(toEnterPrice);
+        realmList.commitTransaction();
     }
 
     private void openShoppingList() {
@@ -126,14 +130,7 @@ public class AddItem extends AppCompatActivity {
     }
 
     private void addNewRealmObject(String toEnterName, String toEnterDescription, int toEnterPrice, boolean toEnterPurchased, int toEnterCategory, Realm realmList) {
-        realmList.beginTransaction();
-        Item newItem = realmList.createObject(Item.class, UUID.randomUUID().toString());
-        newItem.setStatus(toEnterPurchased);
-        newItem.setCategory(toEnterCategory);
-        newItem.setDescription(toEnterDescription);
-        newItem.setName(toEnterName);
-        newItem.setPrice(toEnterPrice);
-        realmList.commitTransaction();
+        makeNewRealmObject(toEnterName, toEnterDescription, toEnterPrice, toEnterPurchased, toEnterCategory, realmList);
     }
 
     private void editRealmObject(String toEnterName, String toEnterDescription, int toEnterPrice, boolean toEnterPurchased, int toEnterCategory, Realm realmList) {

@@ -12,6 +12,7 @@
     <item
         android:id="@+id/action_addNew"
         android:title="Add"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"
+        />
 
 </menu>

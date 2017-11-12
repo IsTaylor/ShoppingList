@@ -1,5 +1,7 @@
 package com.example.owner.shoppinglist.adapter;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -7,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -14,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.example.owner.shoppinglist.ListApplication;
 import com.example.owner.shoppinglist.R;
 import com.example.owner.shoppinglist.ShoppingList;
 import com.example.owner.shoppinglist.data.Item;
@@ -196,6 +201,35 @@ public class ListRecyclerAdapter extends RecyclerView.Adapter<ListRecyclerAdapte
             default:
                 holder.ivItem.setImageResource(R.drawable.icon2);
         }
+
+
+        final Animation sendAnim = AnimationUtils.loadAnimation(ListApplication.getAppContext(),
+                R.anim.icon_anim);
+
+        sendAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+
+        });
+
+        ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+                holder.ivItem,
+                PropertyValuesHolder.ofFloat("scaleX", 1.2f),
+                PropertyValuesHolder.ofFloat("scaleY", 1.2f));
+        scaleDown.setDuration(310);
+        scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
+        scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
+        scaleDown.start();
+
+        holder.ivItem.startAnimation(sendAnim);
     }
 
     private void showDetails(final ViewHolder holder) {
@@ -217,8 +251,8 @@ public class ListRecyclerAdapter extends RecyclerView.Adapter<ListRecyclerAdapte
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setCancelable(true);
-                builder.setMessage("Are you sure you wish to delete this item?");
-                builder.setPositiveButton("Confirm",
+                builder.setMessage(R.string.confirm_delete);
+                builder.setPositiveButton(R.string.confirm,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

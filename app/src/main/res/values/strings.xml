@@ -8,4 +8,24 @@
         <item>Book</item>
     </string-array>
     <string name="title_activity_add_item">AddItem</string>
+    <string name="confirm_delete">Are you sure you wish to delete this item?</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="empty_field_error">This field cannot be empty</string>
+    <string name="add_new_item">Add new item</string>
+    <string name="error_menu_item">Unknown Menu Item</string>
+    <string name="deleted">Deleted</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="item_name">Item name</string>
+    <string name="price">Price</string>
+    <string name="item_description">Item Description</string>
+    <string name="purchased">Purchased?</string>
+    <string name="add_item">Add Item</string>
+    <string name="shopping_list">Shopping List</string>
+    <string name="testing">Testing!!</string>
+    <string name="delete">Delete</string>
+    <string name="view_details">View Details</string>
+    <string name="close_details">Close Details</string>
+    <string name="edit">Edit</string>
 </resources>

@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#daffb3"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -30,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="7dp"
-                android:text="Testing!!" />
+                android:text="@string/testing" />
 
             <TextView
                 android:id="@+id/tvPrice"
@@ -38,14 +40,14 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvName"
                 android:paddingLeft="7dp"
-                android:text="Price" />
+                android:text="@string/price" />
 
             <CheckBox
                 android:id="@+id/cbBought"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvPrice"
-                android:text="Purchased?" />
+                android:text="@string/purchased" />
 
         </RelativeLayout>
 
@@ -55,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
-            android:text="Delete" />
+            android:text="@string/delete" />
 
     </RelativeLayout>
 
@@ -69,15 +71,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="6"
-            android:textOff="View Details"
-            android:textOn="Close Details" />
+            android:textOff="@string/view_details"
+            android:textOn="@string/close_details" />
 
         <Button
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Edit" />
+            android:text="@string/edit" />
 
     </LinearLayout>
 

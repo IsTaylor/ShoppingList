@@ -3,8 +3,10 @@ package com.example.owner.shoppinglist;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -34,6 +37,8 @@ import com.example.owner.shoppinglist.adapter.ListRecyclerAdapter;
 import com.example.owner.shoppinglist.touch.ItemTouchHelperAdapter;
 import com.example.owner.shoppinglist.touch.ItemTouchHelperCallback;
 
+import java.lang.reflect.Field;
+
 public class ShoppingList extends AppCompatActivity {
 
     public static final int REQUEST_CODE_EDIT = 1001;
@@ -41,6 +46,7 @@ public class ShoppingList extends AppCompatActivity {
     private int positionToEdit = -1;
     RecyclerView recyclerList;
     Toolbar toolbar;
+    CollapsingToolbarLayout collapsingToolbar;
 
     private ListRecyclerAdapter adapter;
 
@@ -51,6 +57,11 @@ public class ShoppingList extends AppCompatActivity {
         ((ListApplication) getApplication()).openRealm();
         recyclerList = findViewById(R.id.recyclerShopping);
         toolbar = findViewById(R.id.toolbar);
+        collapsingToolbar = findViewById(R.id.toolbar_layout);
+
+
+        collapsingToolbar.setExpandedTitleColor(Color.rgb(40,80,00));
+        collapsingToolbar.setCollapsedTitleTextColor(Color.rgb(40,80,00));
         setSupportActionBar(toolbar);
 
         setUpRecyclerView();
@@ -81,11 +92,11 @@ public class ShoppingList extends AppCompatActivity {
                 deleteAllConfirmation();
                 break;
             case R.id.action_addNew:
-                Toast.makeText(this, "Add new item", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.add_new_item, Toast.LENGTH_SHORT).show();
                 openAddItemActivity();
                 break;
             default:
-                Toast.makeText(this, "Unknown Menu Item", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.error_menu_item, Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -94,8 +105,8 @@ public class ShoppingList extends AppCompatActivity {
     private void deleteAllConfirmation() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        builder.setMessage("Are you sure you wish to delete all?");
-        builder.setPositiveButton("Confirm",
+        builder.setMessage(R.string.confirm_delete);
+        builder.setPositiveButton(R.string.confirm,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -112,7 +123,7 @@ public class ShoppingList extends AppCompatActivity {
     }
 
     private void deleteAll() {
-        Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.deleted, Toast.LENGTH_SHORT).show();
         ListRecyclerAdapter.deleteAllItems();
         adapter.notifyDataSetChanged();
         recyclerList.removeAllViewsInLayout();
@@ -177,13 +188,13 @@ public class ShoppingList extends AppCompatActivity {
                         if(!TextUtils.isEmpty(etDescription.getText())){
                             wantToCloseDialog = true;
                         } else {
-                            etDescription.setError("This field cannot be empty");
+                            etDescription.setError(getString(R.string.empty_field_error));
                         }
                     } else {
-                        etPrice.setError("This field cannot be empty");
+                        etPrice.setError(getString(R.string.empty_field_error));
                     }
                 } else {
-                    etName.setError("This field cannot be empty");
+                    etName.setError(getString(R.string.empty_field_error));
                 }
 
                 setToCloseDialog(wantToCloseDialog, etName, etDescription, etPrice, cbPurchased, spnCategory, dialog);
@@ -204,14 +215,14 @@ public class ShoppingList extends AppCompatActivity {
     }
 
     private void setPosNegButtons(AlertDialog.Builder builder) {
-        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which){
 
             }
         });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
