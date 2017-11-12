@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ShoppingList</string>
+    <string name="title_activity_shopping_list">ShoppingList</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="type_array">
+        <item>Food</item>
+        <item>Electronic</item>
+        <item>Book</item>
+    </string-array>
+    <string name="title_activity_add_item">AddItem</string>
+</resources>
